@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Registration | NimVar 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NimVar 2026 | Registration</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,10 +16,20 @@
 
     <nav>
         <div class="container">
-            <a href="index.html">Home</a>
-            <a href="program.html">Program</a>
-            <a href="registration.html" class="active">Registration</a>
-            <a href="venue.html">Venue</a>
+            <div class="nav-brand-mobile">NimVar 2026</div>
+            
+            <button type="button" class="hamburger" id="hamburger-menu" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="nav-links">
+                <a href="index.html" >Home</a>
+                <a href="program.html">Program</a>
+                <a href="registration.html" class="active">Registration</a>
+                <a href="venue.html">Venue</a>
+            </div>
         </div>
     </nav>
 
@@ -39,7 +50,7 @@
             <h3>Step 1: Submit your details</h3>
         <p>Please complete the Google Form below to initiate your registration. Upon successful submission, you will receive an automated email receipt with your provided details.
             <h3>Step 2: Await confirmation</h3>
-            You will be contacted by the organizer by July 13, 2026, to formally confirm your participation.
+            <p>You will be contacted by the organizer by July 13, 2026, to formally confirm your participation.
             If you are an early-stage researcher (Phd student or Postdoc) who proposed to contribute with a short talk or with a poster presentation, you will also be notified about its acceptance.
             </p>
 
@@ -53,8 +64,8 @@
         <div class="form-container">
             <iframe
             onload="if(this.dataset.loaded) { window.scrollTo({ top: this.offsetTop - 50, behavior: 'smooth' }); } else { this.dataset.loaded = 'true'; }"
-            src="https://docs.google.com/forms/d/e/1FAIpQLScMdLuzO1Dm3QqtDmdsR5nL9raE668-pWWGdCdFbs2TLDziiw/viewform?embedded=true" 
-            width="100%" height="2200" frameborder="0" marginheight="0" marginwidth="0" scrolling="no" style="border: none; overflow: hidden;">Caricamento in corso...</iframe>
+            src="https://docs.google.com/forms/d/e/1FAIpQLScMdLuzO1Dm3QqtDmdsR5nL9raE668-pWWGdCdFbs2TLDziiw/viewform?embedded=true&hl=en" 
+            width="100%" height="2200" frameborder="0" marginheight="0" marginwidth="0" style="border: none;">Caricamento in corso...</iframe>
         </div>
     </main>
 
@@ -68,7 +79,7 @@
             </div>
             <div class="footer-center">
                 <p class="sponsor-label" style="visibility: hidden;">Placeholder</p>
-                <a href="https://konstantinos-bessas.github.io/NimVar/index.html">
+                <a href="https://konstantinos-bessas.github.io/NimVar/index.html" target="_blank" rel="noopener noreferrer">
                     <img src="images/NimVar_Logo.png" alt="NimVar 2026 Logo" class="footer-logo">
                 </a>
             </div>
@@ -80,5 +91,27 @@
             </div>
         </div>
     </footer>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const hamburger = document.getElementById("hamburger-menu");
+        const navLinks = document.getElementById("nav-links");
+
+        hamburger.addEventListener("click", function(event) {
+            event.preventDefault(); 
+            event.stopPropagation(); 
+
+            navLinks.classList.toggle("active");
+            hamburger.classList.toggle("active");
+        });
+
+        document.addEventListener("click", function(event) {
+            const isClickInside = navLinks.contains(event.target) || hamburger.contains(event.target);
+            if (!isClickInside && navLinks.classList.contains("active")) {
+                navLinks.classList.remove("active");
+                hamburger.classList.remove("active");
+            }
+        });
+    });
+    </script>
 </body>
 </html>

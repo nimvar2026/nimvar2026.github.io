@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NimVar 2026 | Home</title>
     <link rel="stylesheet" href="style.css">
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -23,18 +24,28 @@
 
     <nav>
         <div class="container">
-            <a href="index.html" class="active">Home</a>
-            <a href="program.html">Program</a>
-            <a href="registration.html">Registration</a>
-            <a href="venue.html">Venue</a>
+            <div class="nav-brand-mobile">NimVar 2026</div>
+            
+            <button type="button" class="hamburger" id="hamburger-menu" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="program.html">Program</a>
+                <a href="registration.html">Registration</a>
+                <a href="venue.html">Venue</a>
+            </div>
         </div>
     </nav>
 
     <main class="container">
         <section>
             <h2>About the Workshop</h2>
-            <p>This workshop aims to present the outcomes of the
-                <a href="https://konstantinos-bessas.github.io/NimVar/index.html">
+            <p>The workshop aims to present the outcomes of the
+                <a href="https://konstantinos-bessas.github.io/NimVar/index.html" target="_blank" rel="noopener noreferrer">
                     "Nonlocality in image denoising and other variational problems"
                 </a> research project 
                 while providing a valuable gathering opportunity for mathematicians active in the calculus of variations. It specifically targets researchers focusing on nonlocal problems and image processing. The scientific program will feature invited lectures, and potentially  a limited number of contributed talks and a poster session dedicated to early-stage researchers.
@@ -133,7 +144,7 @@
 
         <div class="footer-center">
             <p class="sponsor-label" style="visibility: hidden;">Placeholder</p>
-            <a href="https://konstantinos-bessas.github.io/NimVar/index.html">
+            <a href="https://konstantinos-bessas.github.io/NimVar/index.html" target="_blank" rel="noopener noreferrer">
                 <img src="images/NimVar_Logo.png" alt="NimVar 2026 Logo" class="footer-logo">
             </a>
         </div>
@@ -188,6 +199,28 @@
                 }
             }
         });
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const hamburger = document.getElementById("hamburger-menu");
+        const navLinks = document.getElementById("nav-links");
+
+        hamburger.addEventListener("click", function(event) {
+            event.preventDefault(); 
+            event.stopPropagation(); 
+
+            navLinks.classList.toggle("active");
+            hamburger.classList.toggle("active");
+        });
+
+        document.addEventListener("click", function(event) {
+            const isClickInside = navLinks.contains(event.target) || hamburger.contains(event.target);
+            if (!isClickInside && navLinks.classList.contains("active")) {
+                navLinks.classList.remove("active");
+                hamburger.classList.remove("active");
+            }
+        });
+    });
     </script>
 </body>
 </html>

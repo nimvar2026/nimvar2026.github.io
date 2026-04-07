@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Program | NimVar 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NimVar 2026 | Program</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,10 +16,20 @@
 
     <nav>
         <div class="container">
-            <a href="index.html">Home</a>
-            <a href="program.html" class="active">Program</a>
-            <a href="registration.html">Registration</a>
-            <a href="venue.html">Venue</a>
+            <div class="nav-brand-mobile">NimVar 2026</div>
+            
+            <button type="button" class="hamburger" id="hamburger-menu" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="nav-links">
+                <a href="index.html" >Home</a>
+                <a href="program.html" class="active">Program</a>
+                <a href="registration.html">Registration</a>
+                <a href="venue.html">Venue</a>
+            </div>
         </div>
     </nav>
 
@@ -39,7 +50,7 @@ A detailed scientific program will be published on this page in August.</p>
             </div>
             <div class="footer-center">
                 <p class="sponsor-label" style="visibility: hidden;">Placeholder</p>
-                <a href="https://konstantinos-bessas.github.io/NimVar/index.html">
+                <a href="https://konstantinos-bessas.github.io/NimVar/index.html" target="_blank" rel="noopener noreferrer">
                     <img src="images/NimVar_Logo.png" alt="NimVar 2026 Logo" class="footer-logo">
                 </a>
             </div>
@@ -51,5 +62,27 @@ A detailed scientific program will be published on this page in August.</p>
             </div>
         </div>
     </footer>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const hamburger = document.getElementById("hamburger-menu");
+        const navLinks = document.getElementById("nav-links");
+
+        hamburger.addEventListener("click", function(event) {
+            event.preventDefault(); 
+            event.stopPropagation(); 
+
+            navLinks.classList.toggle("active");
+            hamburger.classList.toggle("active");
+        });
+
+        document.addEventListener("click", function(event) {
+            const isClickInside = navLinks.contains(event.target) || hamburger.contains(event.target);
+            if (!isClickInside && navLinks.classList.contains("active")) {
+                navLinks.classList.remove("active");
+                hamburger.classList.remove("active");
+            }
+        });
+    });
+    </script>
 </body>
 </html>

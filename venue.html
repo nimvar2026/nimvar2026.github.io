@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Venue | NimVar 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NimVar 2026 | Venue</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,10 +16,20 @@
 
     <nav>
         <div class="container">
-            <a href="index.html">Home</a>
-            <a href="program.html">Program</a>
-            <a href="registration.html">Registration</a>
-            <a href="venue.html" class="active">Venue</a>
+            <div class="nav-brand-mobile">NimVar 2026</div>
+            
+            <button type="button" class="hamburger" id="hamburger-menu" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="nav-links">
+                <a href="index.html" >Home</a>
+                <a href="program.html">Program</a>
+                <a href="registration.html">Registration</a>
+                <a href="venue.html" class="active">Venue</a>
+            </div>
         </div>
     </nav>
 
@@ -50,7 +61,7 @@
             
             <div class="transport-details">
                 <h3>By Train</h3>
-                <p>Pavia is well-connected to the Italian railway network. Direct regional and intercity trains from Milan (Centrale, Rogoredo, or Lambrate stations) run frequently and take about 20-30 minutes. You can check schedules and book tickets on the <a href="https://www.trenitalia.com/en.html" target="_blank" style="color: var(--color-three);">Trenitalia</a> or <a href="https://www.trenord.it/" target="_blank" style="color: var(--color-three);">Trenord</a> websites.</p>
+                <p>Pavia is well-connected to the Italian railway network. Direct regional and intercity trains from Milan (Centrale, Rogoredo, or Lambrate stations) run frequently and take about 20-30 minutes. You can check schedules and book tickets on the <a href="https://www.trenitalia.com/en.html" target="_blank" >Trenitalia</a> or <a href="https://www.trenord.it/" target="_blank" >Trenord</a> websites.</p>
 
                 <h3 style="margin-top: 30px;">By Plane</h3>
                 <p>If you are flying, Pavia is accessible from the three main airports in the Milan area:</p>
@@ -118,10 +129,10 @@
             <p>If you need to book a taxi in advance from your hotel, here are  options:</p>
             <ul style="margin-left: 20px; margin-top: 10px;">
                 <li style="margin-bottom: 10px;">
-                    <strong>Radio Taxi Pavia:</strong> Call <a href="tel:+390382576576" style="color: var(--color-three);">+39 0382 576576</a> (Main local dispatcher).
+                    <strong>Radio Taxi Pavia:</strong> Call <a href="tel:+390382576576" >+39 0382 576576</a> (Main local dispatcher).
                 </li>
                 <li style="margin-bottom: 10px;">
-                    <strong>Taxi Radio Pavese:</strong> Call <a href="tel:+390382577733" style="color: var(--color-three);">+39 0382 577733</a>.
+                    <strong>Taxi Radio Pavese:</strong> Call <a href="tel:+390382577733" >+39 0382 577733</a>.
                 </li>
                 <li>
                     <strong>Taxi Apps:</strong> You can use the <strong>Uber</strong> app to request and pay for local taxis directly from your smartphone.
@@ -156,7 +167,7 @@
             </div>
             <div class="footer-center">
                 <p class="sponsor-label" style="visibility: hidden;">Placeholder</p>
-                <a href="https://konstantinos-bessas.github.io/NimVar/index.html">
+                <a href="https://konstantinos-bessas.github.io/NimVar/index.html" target="_blank" rel="noopener noreferrer">
                     <img src="images/NimVar_Logo.png" alt="NimVar 2026 Logo" class="footer-logo">
                 </a>
             </div>
@@ -168,5 +179,47 @@
             </div>
         </div>
     </footer>
+    <div id="image-modal">
+        <img id="modal-img" src="" alt="Zoomed image">
+    </div>
+
+    <script>
+        const modal = document.getElementById("image-modal");
+        const modalImg = document.getElementById("modal-img");
+        const images = document.querySelectorAll(".dept-photo, .step-photo");
+
+        images.forEach(img => {
+            img.addEventListener("click", function() {
+                modal.style.display = "flex";
+                modalImg.src = this.src;
+            });
+        });
+
+        modal.addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const hamburger = document.getElementById("hamburger-menu");
+        const navLinks = document.getElementById("nav-links");
+
+        hamburger.addEventListener("click", function(event) {
+            event.preventDefault(); 
+            event.stopPropagation(); 
+
+            navLinks.classList.toggle("active");
+            hamburger.classList.toggle("active");
+        });
+
+        document.addEventListener("click", function(event) {
+            const isClickInside = navLinks.contains(event.target) || hamburger.contains(event.target);
+            if (!isClickInside && navLinks.classList.contains("active")) {
+                navLinks.classList.remove("active");
+                hamburger.classList.remove("active");
+            }
+        });
+    });
+    </script>
 </body>
 </html>

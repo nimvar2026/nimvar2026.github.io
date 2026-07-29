@@ -1,0 +1,35 @@
+name: Generate Book of Abstracts PDF
+
+on:
+  push:
+    branches:
+      - main 
+
+permissions:
+  contents: write
+
+jobs:
+  build_pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Genera il file .tex da script.js
+        run: node generate_tex.js
+
+      - name: Compila LaTeX in PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: book_of_abstracts.tex
+
+      - name: Commit e Push del PDF generato
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-generate Book of Abstracts PDF"
+          file_pattern: "book_of_abstracts.pdf"

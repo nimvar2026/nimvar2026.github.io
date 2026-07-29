@@ -146,9 +146,6 @@
             </ul>
         </section>
 
-
-  
-
     <hr style="margin: 50px 0; border: none; border-top: 1px solid var(--color-one-lighter); opacity: 0.3;">
 
     <section id="autoguidovie-info">
@@ -236,44 +233,6 @@
     <div id="image-modal">
         <img id="modal-img" src="" alt="Zoomed image">
     </div>
-
-    <script>
-        const modal = document.getElementById("image-modal");
-        const modalImg = document.getElementById("modal-img");
-        const images = document.querySelectorAll(".dept-photo, .step-photo");
-
-        images.forEach(img => {
-            img.addEventListener("click", function() {
-                modal.style.display = "flex";
-                modalImg.src = this.src;
-            });
-        });
-
-        modal.addEventListener("click", function() {
-            modal.style.display = "none";
-        });
-    </script>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const hamburger = document.getElementById("hamburger-menu");
-        const navLinks = document.getElementById("nav-links");
-
-        hamburger.addEventListener("click", function(event) {
-            event.preventDefault(); 
-            event.stopPropagation(); 
-
-            navLinks.classList.toggle("active");
-            hamburger.classList.toggle("active");
-        });
-
-        document.addEventListener("click", function(event) {
-            const isClickInside = navLinks.contains(event.target) || hamburger.contains(event.target);
-            if (!isClickInside && navLinks.classList.contains("active")) {
-                navLinks.classList.remove("active");
-                hamburger.classList.remove("active");
-            }
-        });
-    });
-    </script>
+   <script src="script.js" defer></script>
 </body>
 </html>

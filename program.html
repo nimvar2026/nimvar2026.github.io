@@ -9,6 +9,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <header class="header-small">
@@ -29,7 +38,7 @@
             </button>
 
             <div class="nav-links" id="nav-links">
-                <a href="index.html" >Home</a>
+                <a href="index.html">Home</a>
                 <a href="program.html" class="active">Program</a>
                 <a href="registration.html">Registration</a>
                 <a href="venue.html">Venue</a>
@@ -38,10 +47,223 @@
     </nav>
 
     <main class="container">
-        <div style="text-align: center; margin: 80px 0;">
-            <p>The workshop will begin on the morning of September 14th and conclude around lunchtime on September 17th.<br>
-A detailed scientific program will be published on this page in August.</p>
-        </div>
+        <section id="schedule-overview">
+            <h2>Overview</h2>
+            <p style="text-align: center; margin-bottom: 30px;">
+                The workshop will span four days, beginning on the morning of September 14th and concluding around lunchtime on September 17th.    
+                On-site registration takes place in the conference room and can be completed at any time during lunches or coffee breaks by contacting the organizer in person. Please note that all lunches, coffee breaks, and the social reception are provided by the organization.
+                Below you can explore the detailed schedule, session timings, and keynotes.
+        </p>
+        <div class="abstract-download-container">
+                <a  href="book_of_abstracts.pdf" target="_blank" class="btn-download">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Download the Book of Abstracts
+                </a>
+            </div>
+
+            <div class="schedule-view-toggle desktop-only">
+                <button class="toggle-btn" id="view-toggle-left" aria-label="Previous view">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <span class="toggle-text" id="view-toggle-text">Schedule Summary (Sept 14 - 17, 2026)</span>
+                <button class="toggle-btn" id="view-toggle-right" aria-label="Next view">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+            <div class="desktop-schedule">
+                <div class="schedule-container">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Monday</th>
+                                <th>Tuesday</th>
+                                <th>Wednesday</th>
+                                <th>Thursday</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="time-col">9:30 – 10:30</td>
+                                <td class="event-opening">Opening</td>
+                                <td class="event-invited" data-talk-id="talk-tue-1">Talk</td>
+                                <td></td>
+                                <td class="event-invited" data-talk-id="talk-thu-1">Talk</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">10:30 – 11:00</td>
+                                <td colspan="4" class="event-coffee">Coffee Break</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">11:00 – 12:00</td>
+                                <td class="event-invited" data-talk-id="talk-mon-1">Talk</td>
+                                <td class="event-invited" data-talk-id="talk-tue-2">Talk</td>
+                                <td class="event-invited" data-talk-id="talk-wed-1">Talk</td>
+                                <td class="event-invited" data-talk-id="talk-thu-2">Talk</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">12:00 – 13:00</td>
+                                <td class="event-invited" data-talk-id="talk-mon-2">Talk</td>
+                                <td class="event-invited" data-talk-id="talk-tue-3">Talk</td>
+                                <td class="event-invited" data-talk-id="talk-wed-2">Talk</td>
+                                <td class="event-invited" data-talk-id="talk-thu-3">Talk</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">13:00 – 15:00</td>
+                                <td colspan="4" class="event-lunch">Lunch</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">15:00 – 16:00</td>
+                                <td class="event-invited" data-talk-id="talk-mon-3">Talk</td>
+                                <td class="event-invited" data-talk-id="talk-tue-4">Talk</td>
+                                <td rowspan="3" class="event-contributed has-details">
+                                    <div class="session-summary">
+                                        <a href="#contributed-talks-section" class="schedule-talk-link">Contributed Session</a>
+                                        <span class="hover-hint">(Hover for details)</span>
+                                    </div>
+                                    
+                                    <div class="session-details">
+                                        <table class="nested-schedule">
+                                            <tbody>
+                                                <tr><td class="time-col">15:00 – 15:15</td><td class="event-break">Contributed Session Setup</td></tr>
+                                                <tr><td class="time-col">15:15 – 15:45</td><td class="event-contributed" data-talk-id="contrib-1">Contributed Talk</td></tr>
+                                                <tr><td class="time-col">15:45 – 16:15</td><td class="event-contributed" data-talk-id="contrib-2">Contributed Talk</td></tr>
+                                                <tr><td class="time-col">16:15 – 16:30</td><td class="event-break">Break</td></tr>
+                                                <tr><td class="time-col">16:30 – 17:00</td><td class="event-contributed" data-talk-id="contrib-3">Contributed Talk</td></tr>
+                                                <tr><td class="time-col">17:00 – 17:30</td><td class="event-contributed" data-talk-id="contrib-4">Contributed Talk</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">16:00 – 17:00</td>
+                                <td class="event-invited" data-talk-id="talk-mon-4">Talk</td>
+                                <td class="event-invited" data-talk-id="talk-tue-5">Talk</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">17:00 – 17:30</td>
+                                <td colspan="2" class="event-coffee">Coffee Break</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">17:30 – 19:30</td>
+                                <td></td>
+                                <td></td>
+                                <td class="event-social"><a href="#social-reception-info" class="schedule-talk-link">Social Reception</a></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="mobile-schedule">
+                <div class="schedule-container" data-day="monday">
+                    <table class="schedule-table">
+                        <thead><tr><th>Time</th><th>Monday</th></tr></thead>
+                        <tbody>
+                            <tr><td class="time-col">9:30 – 10:30</td><td class="event-opening">Opening</td></tr>
+                            <tr><td class="time-col">10:30 – 11:00</td><td class="event-coffee">Coffee Break</td></tr>
+                            <tr><td class="time-col">11:00 – 12:00</td><td class="event-invited" data-talk-id="talk-mon-1">Talk</td></tr>
+                            <tr><td class="time-col">12:00 – 13:00</td><td class="event-invited" data-talk-id="talk-mon-2">Talk</td></tr>
+                            <tr><td class="time-col">13:00 – 15:00</td><td class="event-lunch">Lunch</td></tr>
+                            <tr><td class="time-col">15:00 – 16:00</td><td class="event-invited" data-talk-id="talk-mon-3">Talk</td></tr>
+                            <tr><td class="time-col">16:00 – 17:00</td><td class="event-invited" data-talk-id="talk-mon-4">Talk</td></tr>
+                            <tr><td class="time-col">17:00 – 17:30</td><td class="event-coffee">Coffee Break</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="schedule-container" data-day="tuesday">
+                    <table class="schedule-table">
+                        <thead><tr><th>Time</th><th>Tuesday</th></tr></thead>
+                        <tbody>
+                            <tr><td class="time-col">9:30 – 10:30</td><td class="event-invited" data-talk-id="talk-tue-1">Talk</td></tr>
+                            <tr><td class="time-col">10:30 – 11:00</td><td class="event-coffee">Coffee Break</td></tr>
+                            <tr><td class="time-col">11:00 – 12:00</td><td class="event-invited" data-talk-id="talk-tue-2">Talk</td></tr>
+                            <tr><td class="time-col">12:00 – 13:00</td><td class="event-invited" data-talk-id="talk-tue-3">Talk</td></tr>
+                            <tr><td class="time-col">13:00 – 15:00</td><td class="event-lunch">Lunch</td></tr>
+                            <tr><td class="time-col">15:00 – 16:00</td><td class="event-invited" data-talk-id="talk-tue-4">Talk</td></tr>
+                            <tr><td class="time-col">16:00 – 17:00</td><td class="event-invited" data-talk-id="talk-tue-5">Talk</td></tr>
+                            <tr><td class="time-col">17:00 – 17:30</td><td class="event-coffee">Coffee Break</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="schedule-container" data-day="wednesday">
+                    <table class="schedule-table">
+                        <thead><tr><th>Time</th><th>Wednesday</th></tr></thead>
+                        <tbody>
+                            <tr><td class="time-col">10:30 – 11:00</td><td class="event-coffee">Coffee Break</td></tr>
+                            <tr><td class="time-col">11:00 – 12:00</td><td class="event-invited" data-talk-id="talk-wed-1">Talk</td></tr>
+                            <tr><td class="time-col">12:00 – 13:00</td><td class="event-invited" data-talk-id="talk-wed-2">Talk</td></tr>
+                            <tr><td class="time-col">13:00 – 15:00</td><td class="event-lunch">Lunch</td></tr>
+                            <tr><td class="time-col">15:00 – 15:15</td><td class="event-break">Contributed Session Setup</td></tr>
+                            <tr><td class="time-col">15:15 – 15:45</td><td class="event-contributed" data-talk-id="contrib-1">Contributed Talk</td></tr>
+                            <tr><td class="time-col">15:45 – 16:15</td><td class="event-contributed" data-talk-id="contrib-2">Contributed Talk</td></tr>
+                            <tr><td class="time-col">16:15 – 16:30</td><td class="event-break">Break</td></tr>
+                            <tr><td class="time-col">16:30 – 17:00</td><td class="event-contributed" data-talk-id="contrib-3">Contributed Talk</td></tr>
+                            <tr><td class="time-col">17:00 – 17:30</td><td class="event-contributed" data-talk-id="contrib-4">Contributed Talk</td></tr>
+                            <tr><td class="time-col">17:30 – 19:30</td><td class="event-social"><a href="#social-reception-info" class="schedule-talk-link">Social Reception</a></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="schedule-container" data-day="thursday">
+                    <table class="schedule-table">
+                        <thead><tr><th>Time</th><th>Thursday</th></tr></thead>
+                        <tbody>
+                            <tr><td class="time-col">9:30 – 10:30</td><td class="event-invited" data-talk-id="talk-thu-1">Talk</td></tr>
+                            <tr><td class="time-col">10:30 – 11:00</td><td class="event-coffee">Coffee Break</td></tr>
+                            <tr><td class="time-col">11:00 – 12:00</td><td class="event-invited" data-talk-id="talk-thu-2">Talk</td></tr>
+                            <tr><td class="time-col">12:00 – 13:00</td><td class="event-invited" data-talk-id="talk-thu-3">Talk</td></tr>
+                            <tr><td class="time-col">13:00 – 15:00</td><td class="event-lunch">Lunch</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section> 
+
+       
+
+        <hr class="section-divider">
+
+        <section id="invited-talks-section">
+            <h2>Invited Talks</h2>
+            <div id="invited-talks-list" class="talks-container">
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <section id="contributed-talks-section">
+            <h2>Contributed Talks</h2>
+            <div id="contributed-talks-list" class="talks-container">
+            </div>
+        </section>
+
+        <section id="workshop-info" style="margin-top: 40px;">
+            <h2>Other Information</h2>
+            
+            <div id="social-reception-info" class="talk-card" style="margin-top: 30px; background-color: var(--color-social-bg); border-left: 5px solid var(--color-social-text);">
+                <div class="talk-header">
+                    <h3 class="talk-title" style="color: var(--color-social-text);">Social Reception</h3>
+                </div>
+                <div class="talk-abstract">
+                    <p>Evening social event featuring a standing buffet with a selection of food and drinks (apericena).</p>
+                </div>
+                <div class="talk-footer">
+                    <a href="#schedule-overview" class="btn-back-schedule">↑ Back to Schedule</a>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -66,27 +288,6 @@ A detailed scientific program will be published on this page in August.</p>
             </div>
         </div>
     </footer>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const hamburger = document.getElementById("hamburger-menu");
-        const navLinks = document.getElementById("nav-links");
-
-        hamburger.addEventListener("click", function(event) {
-            event.preventDefault(); 
-            event.stopPropagation(); 
-
-            navLinks.classList.toggle("active");
-            hamburger.classList.toggle("active");
-        });
-
-        document.addEventListener("click", function(event) {
-            const isClickInside = navLinks.contains(event.target) || hamburger.contains(event.target);
-            if (!isClickInside && navLinks.classList.contains("active")) {
-                navLinks.classList.remove("active");
-                hamburger.classList.remove("active");
-            }
-        });
-    });
-    </script>
+    <script src="script.js" defer></script>
 </body>
 </html>

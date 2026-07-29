@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
    <header>
@@ -132,7 +131,7 @@
             <ul>
                 <li><strong>Registration Deadline:</strong> June 28, 2026</li>
                 <li><strong>Notification of Acceptance for Contributed Talks/Posters:</strong> July 13, 2026</li>
-                <li><strong>Final Program Publication:</strong> August 24, 2026</li>
+                <li><strong>Final Program Publication:</strong> September 4, 2026</li>
             </ul>
         </section>
     </main>
@@ -162,69 +161,6 @@
 
     </div>
 </footer>
-<script>
-        var scrollIndicator = document.querySelector('.scroll-indicator');
-        var isVisible = false;
-        var maxScroll = 0;
-
-        
-        setTimeout(function() {
-        
-            if (window.scrollY === 0 && scrollIndicator && scrollIndicator.style.display !== 'none') {
-                isVisible = true; 
-                scrollIndicator.style.transition = 'opacity 1.5s ease'; 
-                scrollIndicator.style.opacity = '0.85'; 
-            }
-        }, 2000);
-
-        
-        window.addEventListener('scroll', function() {
-            if (scrollIndicator && scrollIndicator.style.display !== 'none') {
-                
-                
-                if (!isVisible) {
-                    scrollIndicator.style.display = 'none'; 
-                    return; 
-                }
-
-                
-                scrollIndicator.style.transition = 'none'; 
-                
-                var currentScroll = window.scrollY;
-                if (currentScroll > maxScroll) {
-                    maxScroll = currentScroll;
-                }
-                
-                var newOpacity = 0.85 - (maxScroll / 300);
-                scrollIndicator.style.opacity = Math.max(0, newOpacity);
-                
-                if (newOpacity <= 0) {
-                    scrollIndicator.style.display = 'none'; 
-                }
-            }
-        });
-    </script>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const hamburger = document.getElementById("hamburger-menu");
-        const navLinks = document.getElementById("nav-links");
-
-        hamburger.addEventListener("click", function(event) {
-            event.preventDefault(); 
-            event.stopPropagation(); 
-
-            navLinks.classList.toggle("active");
-            hamburger.classList.toggle("active");
-        });
-
-        document.addEventListener("click", function(event) {
-            const isClickInside = navLinks.contains(event.target) || hamburger.contains(event.target);
-            if (!isClickInside && navLinks.classList.contains("active")) {
-                navLinks.classList.remove("active");
-                hamburger.classList.remove("active");
-            }
-        });
-    });
-    </script>
+<script src="script.js" defer></script>
 </body>
 </html>

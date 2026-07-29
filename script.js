@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
             id: "contrib-4",
             type: "contributed",
             speaker: "Edoardo Voglino",
-            affiliation: "SISSA",
+            affiliation: "SISSA, Trieste",
             title: "Homogenization in one-dimensional higher-order non-local models of phase transitions",
             abstract: "We study the limit behavior of Cahn-Hilliard-type functionals in which the derivative is replaced by higher-order fractional derivatives and modulated by an oscillating factor. Depending on the ratio between the oscillation scale and the interface length, we identify three different regimes and prove $\\Gamma$-convergence in each regime to a suitable sharp-interface limit functional. In the extreme regimes, we prove a separation-of-scales effect that enables us to highlight the difference relative to the local models"
         }

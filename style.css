@@ -30,6 +30,7 @@
 html, body {
     overflow-x: clip; 
     width: 100%;
+    scroll-behavior: smooth; 
 }
 
 body {
@@ -468,44 +469,44 @@ table.schedule-table {
     color: #334155;
 }
 
-.event-opening {
-    background-color: var(--color-opening-bg) !important;
+.schedule-table td.event-opening {
+    background-color: var(--color-opening-bg);
     font-weight: 600;
     color: var(--color-opening-text);
 }
 
-.event-invited {
-    background-color: var(--color-invited-bg) !important;
+.schedule-table td.event-invited {
+    background-color: var(--color-invited-bg);
     font-weight: 600;
     color: var(--color-invited-text);
 }
 
-.event-contributed {
-    background-color: var(--color-contributed-bg) !important;
+.schedule-table td.event-contributed {
+    background-color: var(--color-contributed-bg);
     font-weight: 600;
     color: var(--color-contributed-text);
 }
 
-.event-coffee {
-    background-color: var(--color-coffee-bg) !important;
+.schedule-table td.event-coffee {
+    background-color: var(--color-coffee-bg);
     font-weight: 600;
     color: var(--color-coffee-text);
 }
 
-.event-lunch {
-    background-color: var(--color-lunch-bg) !important;
+.schedule-table td.event-lunch {
+    background-color: var(--color-lunch-bg);
     font-weight: 600;
     color: var(--color-lunch-text);
 }
 
-.event-social {
-    background-color: var(--color-social-bg) !important;
+.schedule-table td.event-social {
+    background-color: var(--color-social-bg);
     font-weight: 600;
     color: var(--color-social-text);
 }
 
-.event-break {
-    background-color: var(--color-break-bg) !important;
+.schedule-table td.event-break {
+    background-color: var(--color-break-bg);
     color: var(--color-break-text); 
     font-weight: 600;
 }
@@ -583,9 +584,10 @@ footer {
     .dept-photo:hover, .step-photo:hover { opacity: 0.75; }
     .footer-logo:hover { opacity: 1 !important; }
 }
+.mobile-schedule-title {
+    display: none; 
+}
 
-
-/* TABLETS & MOBILE SCHEDULE (Max 1000px) */
 @media screen and (max-width: 1000px) {
 
     .container {
@@ -642,9 +644,30 @@ footer {
     .mobile-schedule .schedule-table tbody tr:has(td:empty) {
         display: none;
     }
+    .mobile-schedule-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid var(--color-one-lighter);
+    width: 100%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-four);
+    text-align: center;
+    user-select: none;
+    
+    pointer-events: none;
+    }
 }
 
-/* SMARTPHONES (Max 768px) */
 @media screen and (max-width: 768px) {
     body { font-size: 16px; }
     p, li, td, th { font-size: 1.05rem; line-height: 1.6; }
@@ -748,7 +771,6 @@ footer {
     .scroll-indicator { bottom: 85px; }
 }
 
-/* MICRO-MOBILE (Max 380px) */
 @media screen and (max-width: 380px) {
     .container {
         padding: 0 4px !important;
@@ -1060,5 +1082,48 @@ footer {
     }
     .mobile-schedule .schedule-container {
         display: block !important;
+    }
+}
+.schedule-return-link {
+    color: inherit !important;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.schedule-return-link:hover {
+    opacity: 0.7;
+    color: inherit !important;
+}
+
+.schedule-container, 
+.desktop-schedule {
+    overflow: visible !important;
+    max-height: none !important;
+}
+
+.schedule-container::-webkit-scrollbar {
+    display: none; 
+}
+
+.schedule-container {
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
+}
+
+#modal-hint {
+    position: absolute;
+    bottom: 40px;
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1.2rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 8px 18px;
+    border-radius: 20px;
+    pointer-events: none; 
+}
+
+@media (min-width: 769px) {
+    #modal-hint {
+        display: none;
     }
 }

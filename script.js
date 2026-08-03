@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const SHOW_SPEAKER_NAMES_IN_SCHEDULE = false;
+    const SHOW_SPEAKER_NAMES_IN_SCHEDULE = true;
     if (!SHOW_SPEAKER_NAMES_IN_SCHEDULE) {
         const interactiveInstructions = document.getElementById("interactive-instructions");
         if (interactiveInstructions) {
@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const dayContainers = document.querySelectorAll('.mobile-schedule .schedule-container');
 
             const states = [
-                { id: 'summary', label: 'Schedule Summary (Sept 14 - 17, 2026)' },
+                { id: 'summary', label: 'Sept 14 - 17, 2026' },
                 { id: 'monday', label: 'Monday, September 14' },
                 { id: 'tuesday', label: 'Tuesday, September 15' },
                 { id: 'wednesday', label: 'Wednesday, September 16' },

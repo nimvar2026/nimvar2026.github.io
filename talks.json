@@ -84,8 +84,8 @@
         "type": "invited",
         "speaker": "Berardo Ruffini",
         "affiliation": "University of Bologna",
-        "title": "TBA",
-        "abstract": "TBA"
+        "title": "An improved quantitative fractional isoperimetric inequality",
+        "abstract": "We present an improved version of the quantitative fractional isoperimetric inequality, in which a stronger notion of asymmetry appears. In particular, we show that the square root of the isoperimetric deficit controls, not only the Fraenkel asymmetry, but also a suitable notion of oscillation of the boundary. This extends the result in the local setting obtained by Fusco and Julin in 2011. The proof follows a similar spirit but is different with respect to that in the local case. This is a joint work with E. Cinti and E. M. Merlino."
     },
     {
         "id": "talk-thu-1",

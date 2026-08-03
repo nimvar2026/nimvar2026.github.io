@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const SHOW_SPEAKER_NAMES_IN_SCHEDULE = true;
+    const SHOW_SPEAKER_NAMES_IN_SCHEDULE = false;
     if (!SHOW_SPEAKER_NAMES_IN_SCHEDULE) {
         const interactiveInstructions = document.getElementById("interactive-instructions");
         if (interactiveInstructions) {

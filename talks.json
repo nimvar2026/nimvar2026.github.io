@@ -100,8 +100,8 @@
         "type": "invited",
         "speaker": "Roberta Schiattarella",
         "affiliation": "University of Naples Federico II",
-        "title": "TBA",
-        "abstract": "TBA"
+        "title": "BMO-Type Functionals for Image Denoising: Anisotropic Total Variation and $\\Gamma$-Convergence",
+        "abstract": "We study an anisotropic family of BMO-type functionals based on local mean oscillations over disjoint translations of a fixed reference set. Their pointwise limit on SBV functions distinguishes the absolutely continuous and jump parts of the derivative through two different anisotropic densities. Since the pointwise limit may fail to exist for general BV functions, we consider their $\\Gamma$-convergence in $L^1$ and with respect to stronger topologies. We also discuss applications to image denoising, where these functionals act as scale-dependent regularizers and their $\\Gamma$-limits describe the effective variational models. The talk is based on joint works with Fernando Farroni, Nicola Fusco, Serena Guarino Lo Bianco, and Luigi Greco."
     },
     {
         "id": "talk-tue-4",

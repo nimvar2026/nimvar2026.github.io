@@ -68,8 +68,8 @@
         "type": "invited",
         "speaker": "Maria Giovanna Mora",
         "affiliation": "University of Pavia",
-        "title": "TBA",
-        "abstract": "TBA"
+        "title": "On the Minimisation of Nonlocal Interaction Energies",
+        "abstract": "Nonlocal interaction energies play a central role in describing the collective behaviour of large particle systems in a wide range of applications. In this lecture we will focus on interaction energies that are short-range repulsive and long-range attractive. We will review the key results on the existence and uniqueness of minimisers, and present their explicit characterisation in the classical case of isotropic kernels with Riesz-type repulsion. We will then show how a complete characterisation can be given for a broad class of anisotropic variants of the repulsive kernel. This talk is based on joint works with several collaborators: R. Frank, J. Mateu, L. Rondi, A. Scagliotti, L. Scardia, E.G. Tolotti, and J. Verdera."
     },
     {
         "id": "talk-thu-2",

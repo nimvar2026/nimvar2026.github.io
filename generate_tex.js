@@ -35,7 +35,6 @@ let texContent = `\\documentclass[12pt,a4paper]{article}
 \\usepackage[margin=2.5cm]{geometry}
 \\usepackage{amsmath,amssymb,amsfonts}
 \\usepackage{hyperref}
-\\usepackage{parskip}
 \\usepackage{xcolor}
 
 \\definecolor{navyblue}{RGB}{10, 37, 64}

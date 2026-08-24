@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         </div>
                     </div>
                     <div class="talk-abstract">
-                        <p>${talk.abstract}</p>
+                        <p>${talk.abstract.replace(/\n/g, '<br>')}</p>
                     </div>
                     <div class="talk-footer">
                         <a href="#schedule-overview" class="btn-back-schedule">↑ Back to Schedule</a>

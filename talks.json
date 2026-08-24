@@ -52,8 +52,8 @@
         "type": "invited",
         "speaker": "Serena Guarino Lo Bianco",
         "affiliation": "University of Modena and Reggio Emilia",
-        "title": "TBA",
-        "abstract": "TBA"
+        "title": "Generalized BMO-type seminorms and vector-valued Sobolev functions",
+        "abstract": "We establish a pointwise limit theorem for a broad class of parameter-dependent BMO-type seminorms as the parameter tends to zero. By introducing novel BMO-type seminorms, we extend several existing results on characterization of Sobolev-type spaces to the vector-valued setting. Precisely, for any open set $\\Omega\\subset \\mathbb{R}^n$ and any $p\\in (1, \\infty)$, we establish a non-distributional characterization of both the Sobolev space $W^{1,p}(\\Omega; \\mathbb{R}^m)$ and the space $E^{1,p}(\\Omega;\\mathbb{R}^n)$ of $L^p$ maps with $p$-integrable distributional symmetric gradient.\nMoreover, for all $p\\in [1, \\infty)$, we show that these seminorms converge to integral functionals with convex, $p$-homogeneous integrands associated with the distributional gradient and the symmetric gradient.\nThe talk is based on a joint work with Konstantinos Bessas (Università di Pavia) and Roberta Schiattarella (Università degli Studi di Napoli Federico II)."
     },
     {
         "id": "talk-thu-3",

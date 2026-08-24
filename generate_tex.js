@@ -69,7 +69,7 @@ invitedTalks.forEach(talk => {
 \\subsection*{${cleanLatex(talk.title)}}
 \\addcontentsline{toc}{subsection}{${cleanLatex(talk.speaker)} (${cleanLatex(talk.affiliation)})}
 \\textbf{Speaker:} ${cleanLatex(talk.speaker)} (${cleanLatex(talk.affiliation)})\\\\[0.5em]
-\\textbf{Abstract:} ${cleanLatex(talk.abstract)}
+\\textbf{Abstract:} ${cleanLatex(talk.abstract.replace(/\n/g, '\n\n'))}
 
 \\vspace{1em}
 \\dotfill
@@ -83,7 +83,7 @@ contributedTalks.forEach(talk => {
 \\subsection*{${cleanLatex(talk.title)}}
 \\addcontentsline{toc}{subsection}{${cleanLatex(talk.speaker)} (${cleanLatex(talk.affiliation)})}
 \\textbf{Speaker:} ${cleanLatex(talk.speaker)} (${cleanLatex(talk.affiliation)})\\\\[0.5em]
-\\textbf{Abstract:} ${cleanLatex(talk.abstract)}
+\\textbf{Abstract:} ${cleanLatex(talk.abstract.replace(/\n/g, '\n\n'))}
 
 \\vspace{1em}
 \\dotfill

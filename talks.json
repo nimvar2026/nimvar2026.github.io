@@ -12,8 +12,8 @@
         "type": "invited",
         "speaker": "Giuseppe Cosma Brusca",
         "affiliation": "SISSA, Trieste",
-        "title": "TBA",
-        "abstract": "TBA"
+        "title": "Some variational problems in non-local frameworks: embeddings, free-discontinuity problems, and homogenization",
+        "abstract": "We present some results concerning classical problems in the Calculus of Variations formulated in various non-local frameworks. We begin by introducing non-local Sobolev spaces by means of a Gagliardo-like seminorm, discussing their continuous embeddings together with possible applications to geometric variational problems. Subsequently, we describe the non-local-to-local passage by illustrating several $\\Gamma$-convergence results. First, we consider non-local energies in the context of phase transitions and free-discontinuity problems. Then, we address the multiscale analysis of energies that oscillate periodically or that are subject to Dirichlet boundary conditions on perforated domains, showcasing different behaviours in accordance with the specific non-local setting. Based on joint works with Konstantinos Bessas, Andrea Braides, Francesco Cassandra, Davide Donati, Giuliana Fusco, Sergio Scalabrino, Chiara Trifone, and Edoardo Voglino."
     },
     {
         "id": "talk-mon-4",

@@ -38,7 +38,7 @@ let texContent = `\\documentclass[12pt,a4paper]{article}
 \\usepackage{xcolor}
 \\usepackage[style=numeric,backend=biber]{biblatex}
 \\definecolor{navyblue}{RGB}{10, 37, 64}
-
+\\DeclareFieldFormat{url}{Preprint available at: \\url{#1}}
 \\hypersetup{
     colorlinks=true,
     linkcolor=navyblue,
@@ -86,6 +86,8 @@ function generateTalkLatex(talk) {
     if (bibFile) {
         output += `
 \\vspace{1em}
+\\noindent\\textbf{References}
+\\vspace{0.5em}
 \\nocite{*}
 \\printbibliography[heading=none]
 \\end{refsection}

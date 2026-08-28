@@ -4,8 +4,8 @@
         "type": "invited",
         "speaker": "Soeren Bartels",
         "affiliation": "University of Freiburg",
-        "title": "TBA",
-        "abstract": "TBA"
+        "title": "A prox-Based Semi-Smooth Newton Method for Convex Variational Problems",
+        "abstract": "In this talk, we present a prox-based semi-smooth Newton method for a broad class of convex variational problems with non-differentiable energy densities, including TV-minimisation, $p$-Dirichlet type energies, elasto-plastic torsion, and obstacle-type problems. The  idea is to reformulate the subdifferential optimality conditions using proximity operators, which yields a nonlinear operator equation with a Newton-differentiable structure. Under mild local strong convexity assumptions on the energy density, we establish local superlinear convergence based on invertibility and uniform boundedness of Newton derivatives. The framework recovers classical semi-smooth Newton schemes for obstacle-type problems and exhibits a primal-dual invariance. Numerical examples illustrate the efficiency of the method for representative model problems."
     },
     {
         "id": "talk-mon-2",

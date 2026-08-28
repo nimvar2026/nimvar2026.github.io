@@ -36,7 +36,7 @@ let texContent = `\\documentclass[12pt,a4paper]{article}
 \\usepackage{amsmath,amssymb,amsfonts}
 \\usepackage{hyperref}
 \\usepackage{xcolor}
-
+\\usepackage[style=numeric,backend=biber]{biblatex}
 \\definecolor{navyblue}{RGB}{10, 37, 64}
 
 \\hypersetup{
@@ -62,32 +62,52 @@ let texContent = `\\documentclass[12pt,a4paper]{article}
 const invitedTalks = talksData.filter(t => t.type === 'invited');
 const contributedTalks = talksData.filter(t => t.type === 'contributed');
 
-texContent += `\\section{Invited Talks}\n\\vspace{0.5cm}\n`;
-invitedTalks.forEach(talk => {
-    texContent += `
-\\subsection*{${cleanLatex(talk.title)}}
-\\addcontentsline{toc}{subsection}{${cleanLatex(talk.speaker)} (${cleanLatex(talk.affiliation)})}
-\\textbf{Speaker:} ${cleanLatex(talk.speaker)} (${cleanLatex(talk.affiliation)})\\\\[0.5em]
-\\textbf{Abstract:} ${cleanLatex(talk.abstract.replace(/\n/g, '\n\n'))}
+function generateTalkLatex(talk) {
+    let output = '';
+    
+    const bibFile = talk.bib_file ? talk.bib_file.replace(/\\/g, '/') : null;
 
+    if (bibFile) {
+        output += `\\begin{refsection}[${bibFile}]\n`;
+    }
+
+    const title = cleanLatex(talk.title || '');
+    const speaker = cleanLatex(talk.speaker || '');
+    const affiliation = talk.affiliation ? ` (${cleanLatex(talk.affiliation)})` : '';
+    const abstractText = cleanLatex((talk.abstract || '').replace(/\n/g, '\n\n'));
+
+    output += `
+\\subsection*{${title}}
+\\addcontentsline{toc}{subsection}{${speaker}${affiliation}}
+\\textbf{Speaker:} ${speaker}${affiliation}\\\\[0.5em]
+\\textbf{Abstract:} ${abstractText}
+`;
+
+    if (bibFile) {
+        output += `
+\\vspace{1em}
+\\nocite{*}
+\\printbibliography[heading=none]
+\\end{refsection}
+`;
+    }
+
+    output += `
 \\vspace{1em}
 \\dotfill
 \\vspace{1.5em}
 `;
+    return output;
+}
+
+texContent += `\\section{Invited Talks}\n\\vspace{0.5cm}\n`;
+invitedTalks.forEach(talk => {
+    texContent += generateTalkLatex(talk);
 });
 
 texContent += `\\newpage\n\\section{Contributed Talks}\n\\vspace{0.5cm}\n`;
 contributedTalks.forEach(talk => {
-    texContent += `
-\\subsection*{${cleanLatex(talk.title)}}
-\\addcontentsline{toc}{subsection}{${cleanLatex(talk.speaker)} (${cleanLatex(talk.affiliation)})}
-\\textbf{Speaker:} ${cleanLatex(talk.speaker)} (${cleanLatex(talk.affiliation)})\\\\[0.5em]
-\\textbf{Abstract:} ${cleanLatex(talk.abstract.replace(/\n/g, '\n\n'))}
-
-\\vspace{1em}
-\\dotfill
-\\vspace{1.5em}
-`;
+    texContent += generateTalkLatex(talk);
 });
 
 texContent += `\\end{document}`;

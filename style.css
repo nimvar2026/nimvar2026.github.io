@@ -853,6 +853,40 @@ table.schedule-table {
     }
 }
 
+.talk-references {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px dashed var(--color-slate-light);
+}
+
+.talk-references h4 {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+}
+
+.refs-content {
+    font-family: "Computer Modern Serif", "Times New Roman", Times, serif;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--color-slate-dark);
+}
+
+.refs-content .csl-entry {
+    display: flex;
+    margin-bottom: 0.8rem;
+}
+
+.refs-content .csl-left-margin {
+    flex-shrink: 0;
+    width: 2.2rem;
+}
+
+.refs-content .csl-right-inline {
+    flex: 1;
+}
+
 footer {
     background-color: #ffffff;
     padding: 2.5rem 0;

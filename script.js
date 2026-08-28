@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const SHOW_SPEAKER_NAMES_IN_SCHEDULE = false;
+    const SHOW_SPEAKER_NAMES_IN_SCHEDULE = true;
     if (!SHOW_SPEAKER_NAMES_IN_SCHEDULE) {
         const interactiveInstructions = document.getElementById("interactive-instructions");
         if (interactiveInstructions) {
@@ -119,6 +119,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     ? `<a href="#" class="schedule-return-link" data-talk-id="${talk.id}"><strong>${talk.speaker}</strong></a>` 
                     : `<strong>${talk.speaker}</strong>`;
 
+                let referencesHTML = '';
+                if (talk.bib_file) {
+                    referencesHTML = `
+                        <div class="talk-references" id="refs-${talk.id}">
+                            <h4>References</h4>
+                            <div class="refs-content">Loading references...</div>
+                        </div>
+                    `;
+                }
+
                 card.innerHTML = `
                     <div class="talk-header">
                         <h3 class="talk-title">
@@ -131,6 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="talk-abstract">
                         <p>${talk.abstract.replace(/\n/g, '<br>')}</p>
                     </div>
+                    ${referencesHTML} 
                     <div class="talk-footer">
                         <a href="#schedule-overview" class="btn-back-schedule">↑ Back to Schedule</a>
                     </div>
@@ -140,6 +151,87 @@ document.addEventListener("DOMContentLoaded", function () {
                     invitedContainer.appendChild(card);
                 } else {
                     contributedContainer.appendChild(card);
+                }
+
+                if (talk.bib_file) {
+                    fetch(talk.bib_file)
+                        .then(response => {
+                            if (!response.ok) throw new Error("Bib file non trovato");
+                            return response.text();
+                        })
+                        .then(async bibText => { 
+                            const Cite = require('citation-js');
+                            
+                            let config = Cite.plugins.config.get('@csl');
+                            if (!config.templates.has('ieee')) {
+                                const cslResponse = await fetch('https://raw.githubusercontent.com/citation-style-language/styles/master/ieee.csl');
+                                const cslText = await cslResponse.text();
+                                config.templates.add('ieee', cslText);
+                            }
+
+                            const cite = new Cite(bibText);
+                            
+                            let htmlRefs = cite.format('bibliography', {
+                                format: 'html',
+                                template: 'ieee',
+                                lang: 'en-US'
+                            });
+                            
+                            const tempDiv = document.createElement('div');
+                            tempDiv.innerHTML = htmlRefs;
+                            
+                            tempDiv.querySelectorAll('a').forEach(a => {
+                                a.setAttribute('target', '_blank');
+                            });
+                            
+                            tempDiv.querySelectorAll('.csl-right-inline, .csl-entry').forEach(el => {
+                                if (!el.innerHTML.includes('<a href="https://doi.org')) {
+                                    el.innerHTML = el.innerHTML.replace(
+                                        /doi:\s*(10\.\d{4,9}\/[^\s<]+)/g, 
+                                        function(match, rawDoi) {
+                                            const cleanDoi = rawDoi.replace(/[\.,]+$/, '');
+                                            return `doi: <a href="https://doi.org/${cleanDoi}" target="_blank">${cleanDoi}</a>.`;
+                                        }
+                                    );
+                                }
+                                
+                                el.innerHTML = el.innerHTML.replace(
+                                    /\[Online\]\.\s*Available:\s*/g, 
+                                    'Preprint available at: '
+                                );
+                            });
+                            
+                            const entries = tempDiv.querySelectorAll('.csl-entry');
+                            entries.forEach(entry => {
+                                const textContent = entry.textContent;
+                                
+                                const item = cite.data.find(d => {
+                                    if (!d.title) return false;
+                                    const cleanTitle = d.title.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+                                    const cleanText = textContent.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+                                    return cleanText.includes(cleanTitle);
+                                });
+                                
+                                if (item && item.URL && !textContent.includes(item.URL)) {
+                                    const cleanUrl = item.URL.trim();
+                                    const preprintSpan = document.createElement('span');
+                                    preprintSpan.innerHTML = ` Preprint available at: <a href="${cleanUrl}" target="_blank">${cleanUrl}</a>.`;
+                                    
+                                    const rightInline = entry.querySelector('.csl-right-inline');
+                                    if (rightInline) {
+                                        rightInline.appendChild(preprintSpan);
+                                    } else {
+                                        entry.appendChild(preprintSpan);
+                                    }
+                                }
+                            });
+                            
+                            document.querySelector(`#refs-${talk.id} .refs-content`).innerHTML = tempDiv.innerHTML;
+                        })
+                        .catch(err => {
+                            console.error(`Errore nel caricamento referenze per ${talk.id}:`, err);
+                            document.querySelector(`#refs-${talk.id} .refs-content`).innerHTML = "<p><em>References non disponibili.</em></p>";
+                        });
                 }
             });
 

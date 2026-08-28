@@ -60,8 +60,8 @@
         "type": "invited",
         "speaker": "Dario Mazzoleni",
         "affiliation": "University of Pavia",
-        "title": "TBA",
-        "abstract": "TBA"
+        "title": "Some observations on the Gamow liquid drop model",
+        "abstract": "In this talk, we will deal with the (generalized) Gamow liquid drop model ($N\\geq 2$):\\[\\min\\Bigg\\{P(\\Omega)+\\int_\\Omega\\int_\\Omega\\frac{1}{|x-y|^{N-\\alpha}}\\,\\mathrm{d}x\\mathrm{d}y : \\Omega\\subset \\mathbb{R}^N,\\; |\\Omega|=m \\Bigg\\},\\]focusing mostly on the nonexistence issue for large masses $m$. We will show some elementary geometric strategies to obtain some interesting information on this problem."
     },
     {
         "id": "talk-mon-1",
@@ -92,8 +92,8 @@
         "type": "invited",
         "speaker": "Giorgio Saracco",
         "affiliation": "University of Ferrara",
-        "title": "TBA",
-        "abstract": "TBA"
+        "title": "Isoperimetric sets and profile monotonicity in planar convex bodies",
+        "abstract": "Given a planar convex set $K$, we provide a novel proof of the characterization of isoperimetric sets in $K$. It relies on a suitable Legendre-type duality with the prescribed-curvature functional, which also yields regularity properties of the isoperimetric profile. Relying on this novel approach, we prove that the isoperimetric profile is monotone along the volume-preserving parallel-body flow. This is based on joint work with Fattah, Ftouhi, and Leonardi."
     },
     {
         "id": "talk-tue-5",
@@ -108,8 +108,9 @@
         "type": "invited",
         "speaker": "Giorgio Stefani",
         "affiliation": "University of Padua",
-        "title": "TBA",
-        "abstract": "TBA"
+        "title": "Some perspectives on the BBM formula",
+        "abstract": "We present some recent results on the Bourgain-Brezis-Mironescu (BBM) formula, including sharp conditions for its validity, semigroup analogues, and weighted versions. These results were obtained in collaboration with L. Gennaioli, and with A. Kubin and G. Saracco.",
+        "bib_file": "bib/stefani.bib"
     },
     {
         "id": "contrib-1",

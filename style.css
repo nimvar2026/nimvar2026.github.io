@@ -342,7 +342,7 @@ main ul:not(.speakers-list):not(.organizer-list):not(.transport-links) {
     font-size: 0.8rem;
     text-transform: uppercase; 
     letter-spacing: 1.5px; 
-    margin-left: 0.625rem;
+    margin-left: 0rem;
     font-weight: 600;
 }
 
@@ -800,7 +800,7 @@ table.schedule-table {
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    margin-left: 0.625rem;
+    margin-left: 0rem;
     font-weight: 600;
 }
 
@@ -1168,7 +1168,8 @@ footer {
     }
     
     .speakers-list em, 
-    .organizer-list em {
+    .organizer-list em,
+    .talk-speaker em {
         display: block;
         margin-left: 0;
         margin-top: 2px;
@@ -1238,3 +1239,24 @@ footer {
         display: none;
     }
 }
+mjx-container[display="true"] {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 6px 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.35) rgba(0, 0, 0, 0.08);
+}
+mjx-container[display="true"]::-webkit-scrollbar {
+    height: 4px; 
+}
+
+mjx-container[display="true"]::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+mjx-container[display="true"]::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.35); 
+    border-radius: 4px;
+}
+

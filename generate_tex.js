@@ -17,7 +17,9 @@ function cleanLatex(text) {
     if (!text) return '';
     if (text.trim() === 'TBA') return '\\textit{To be announced}';
 
-    const parts = text.split(/(?<!\\)\$/);
+    const mathRegex = /(\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\)|(?<!\\)\$[\s\S]*?(?<!\\)\$)/g;
+
+    const parts = text.split(mathRegex);
     for (let i = 0; i < parts.length; i++) {
         if (i % 2 === 0) {
             parts[i] = parts[i]
@@ -27,7 +29,7 @@ function cleanLatex(text) {
                 .replace(/_/g, '\\_');
         }
     }
-    return parts.join('$');
+    return parts.join('');
 }
 
 let texContent = `\\documentclass[12pt,a4paper]{article}

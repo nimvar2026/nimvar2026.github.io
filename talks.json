@@ -20,8 +20,8 @@
         "type": "invited",
         "speaker": "Davide Carazzato",
         "affiliation": "University of Vienna",
-        "title": "TBA",
-        "abstract": "TBA"
+        "title": "Continuity of critical points of Riesz energies in dimension 1",
+        "abstract": "We will present a regularity result for critical points of Riesz energies in dimension 1 for a general class of interaction kernels assuming that the critical points admit bounded density with respect to the Lebesgue measure. Under some convexity assumptions on the kernel, we provide a control on the oscillations of the density, yielding to the continuity result. This result was obtained in collaboration with N. Fusco and A. Pratelli."
     },
     {
         "id": "talk-tue-2",
@@ -44,8 +44,8 @@
         "type": "invited",
         "speaker": "Patrick Dondl",
         "affiliation": "University of Freiburg",
-        "title": "TBA",
-        "abstract": "TBA"
+        "title": "A fast multipole method for fractional total variation",
+        "abstract": "We consider variational problems of the form\\[\\min_u\\ \\frac12\\int_\\Omega\\!\\int_\\Omega\\frac{|u(x)-u(y)|}{|x-y|^{d+s}}\\,\\mathrm{d}x\\,\\mathrm{d}y\\;+\\;\\Lambda\\int_\\Omega |u-g|^p\\,\\mathrm{d}x,\\]where the regularizer is the $s$-fractional total variation, i.e. the seminorm of $W^{s,1}(\\Omega)$. In contrast to models built on a squared fractional Sobolev seminorm, the associated Euler-Lagrange equation is a nonlinear nonlocal equation involving the fractional $1$-Laplacian, so Fourier spectral methods are unavailable. Standard fast summation fails for a more basic reason: the first variation\\[\\sum_j G(|x_i-x_j|)\\,\\operatorname{sign}(u_i-u_j)\\]carries a charge that depends on the target index, which destroys the source-target decoupling fast multipole methods rely on.\nWe present a discretization that $\\Gamma$-converges to the continuous model, together with an algorithm that restores the FMM structure. The key observation is that sorting the degrees of freedom by value converts the sign nonlinearity into an insertion order: each gradient entry becomes a kernel-weighted sum over the already-inserted set, so the kernel seen by the multipole expansion is linear again.\nThis is joint work with Konstantinos Bessas (Pavia) and Jan-Philip Kniesel (Freiburg)."
     },
     {
         "id": "talk-wed-1",
@@ -61,7 +61,7 @@
         "speaker": "Dario Mazzoleni",
         "affiliation": "University of Pavia",
         "title": "Some observations on the Gamow liquid drop model",
-        "abstract": "In this talk, we will deal with the (generalized) Gamow liquid drop model ($N\\geq 2$):\\[\\min\\Bigg\\{P(\\Omega)+\\int_\\Omega\\int_\\Omega\\frac{1}{|x-y|^{N-\\alpha}}\\,\\mathrm{d}x\\mathrm{d}y : \\Omega\\subset \\mathbb{R}^N,\\; |\\Omega|=m \\Bigg\\},\\]focusing mostly on the nonexistence issue for large masses $m$. We will show some elementary geometric strategies to obtain some interesting information on this problem."
+        "abstract": "In this talk, we will deal with the (generalized) Gamow liquid drop model ($N\\geq 2$):\\[\\min\\Bigg\\{P(\\Omega)+\\int_\\Omega\\int_\\Omega\\frac{1}{|x-y|^{N-\\alpha}}\\,\\mathrm{d}x\\mathrm{d}y : \\Omega\\subset \\mathbb{R}^N,\\; |\\Omega|=m \\Bigg\\},\\]focusing mostly on the nonexistence issue for large masses $m$. We will show some elementary geometric strategies to obtain some interesting information on this problem.\nThis is a joint ongoing work with Aldo Pratelli (Pisa) and Berardo Ruffini (Bologna)."
     },
     {
         "id": "talk-mon-1",

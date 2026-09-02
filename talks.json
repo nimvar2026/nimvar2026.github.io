@@ -28,8 +28,8 @@
         "type": "invited",
         "speaker": "Antonin Chambolle",
         "affiliation": "CEREMADE Dauphine/PSL University",
-        "title": "TBA",
-        "abstract": "TBA"
+        "title": "Some properties of the solutions of Total-Variation regularized inverse problems",
+        "abstract": "Together with M. Łasica (Warsaw), we revisited the issue of jump set inclusion for solutions of total-variation denoising problems (aka ROF problem). We proposed a quite general approach which allowed to show the result in many different settings (convex data terms, vectorial/color images, nuclear norm total variation...), including, in a recent extension with K. Bessas (Pavia), non-local, such as fractional total variations.\nJoint works with Michał Łasica (Warsaw) and Konstantinos Bessas (Pavia)."
     },
     {
         "id": "talk-tue-1",

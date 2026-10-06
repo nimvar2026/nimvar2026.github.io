@@ -65,35 +65,41 @@ document.addEventListener("DOMContentLoaded", function () {
     if (modal && modalImg && images.length > 0) {
         images.forEach((img) => {
             img.addEventListener("click", function () {
-                modal.style.display = "flex";
-                modalImg.src = this.src;
+                modalImg.src = "";           
+                modalImg.src = this.src;      
+                modal.style.display = "flex";  
             });
         });
 
-        modal.addEventListener("click", function () {
+        
+        const closeModal = () => {
             modal.style.display = "none";
-        });
+            modalImg.src = "";                 
+        };
+
+        modal.addEventListener("click", closeModal);
 
         document.addEventListener("keydown", function (event) {
             if (event.key === "Escape" || event.key === "Esc") {
-                modal.style.display = "none";
+                closeModal();
             }
         });
     }
 
-    fetch("talks.json")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Errore nel caricamento del file JSON");
-            }
-            return response.json();
-        })
-        .then(talksData => {
-            initScheduleAndAbstracts(talksData);
-        })
-        .catch(error => {
-            console.error("Errore Fetch:", error);
-        });
+    const invitedContainer = document.getElementById("invited-talks-list");
+    const contributedContainer = document.getElementById("contributed-talks-list");
+
+    if (invitedContainer || contributedContainer) {
+        fetch("talks.json")
+            .then(response => {
+                if (!response.ok) throw new Error("Error loading the JSON file");
+                return response.json();
+            })
+            .then(talksData => {
+                initScheduleAndAbstracts(talksData);
+            })
+            .catch(error => console.error("Fetch Error:", error));
+    }
 
     function initScheduleAndAbstracts(talksData) {
         const invitedContainer = document.getElementById("invited-talks-list");
@@ -160,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             return response.text();
                         })
                         .then(async bibText => { 
-                            const Cite = require('citation-js');
+                            const Cite = window.Cite || window.require('citation-js');
                             
                             let config = Cite.plugins.config.get('@csl');
                             if (!config.templates.has('ieee')) {
@@ -439,4 +445,309 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
     }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+   const grid = document.querySelector('.mosaic-grid');
+    if (!grid) return;
+
+    const spacer = grid.querySelector('.mosaic-spacer');
+    if (!spacer) return;
+
+    let COLS, ROWS;
+    let board = [];
+    let hRow = 0, hCol = 0;
+    let spacerInfoTimeout = null; 
+    let singleColTimeout = null;  
+
+    function updateDimensions() {
+        const w = window.innerWidth;
+        if (w >= 1200) { 
+            COLS = 5; ROWS = 4; 
+        } else if (w >= 768) { 
+            COLS = 4; ROWS = 5; 
+        } else { 
+            COLS = 1; ROWS = 20; 
+        }
+    }
+
+    function initBoard() {
+        updateDimensions();
+        const elements = Array.from(grid.querySelectorAll('.mosaic-item'));
+        board = [];
+        for (let r = 0; r < ROWS; r++) {
+            board[r] = [];
+            for (let c = 0; c < COLS; c++) {
+                const el = elements[r * COLS + c];
+                if (el) {
+                    board[r][c] = el;
+                    if (el === spacer) {
+                        hRow = r; hCol = c;
+                    }
+                }
+            }
+        }
+
+        if (COLS > 1) {
+            updateSpacerRecursion();
+        }
+    }
+
+
+    initBoard();
+
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            initBoard();
+        }, 250);
+    });
+
+    function showLargeOverlay(targetLargeItem) {
+        document.querySelectorAll('.show-large-overlay').forEach(el => {
+            el.classList.remove('show-large-overlay');
+        });
+        if (targetLargeItem) {
+            targetLargeItem.classList.add('show-large-overlay');
+        }
+    }
+
+    let miniHighlightTimeout = null;
+
+    function updateSpacerRecursion() {
+
+        if (spacerInfoTimeout) {
+            clearTimeout(spacerInfoTimeout);
+            spacerInfoTimeout = null;
+        }
+
+        let miniGridHTML = '<div class="mini-mosaic">';
+        for (let r = 0; r < ROWS; r++) {
+            for (let c = 0; c < COLS; c++) {
+                if (board[r][c] === spacer) {
+                    miniGridHTML += `
+                        <div class="mini-item mini-logo" data-r="${r}" data-c="${c}">
+                            <img src="images/NimVar_Logo.png" alt="NimVar Logo">
+                        </div>`;
+                } else {
+                    const img = board[r][c] ? board[r][c].querySelector('img:not(.spacer-placeholder-img)') : null;
+                    const src = img ? img.getAttribute('src') : '';
+                    miniGridHTML += `
+                        <div class="mini-item" data-r="${r}" data-c="${c}">
+                            <img src="${src}" alt="">
+                        </div>`;
+                }
+            }
+        }
+        miniGridHTML += '</div>';
+
+        spacer.innerHTML = `
+            <img src="images/empty.webp" alt="" class="spacer-placeholder-img">
+            <div class="spacer-content" style="padding: 0;">
+                ${miniGridHTML}
+            </div>
+        `;
+
+        const miniItems = spacer.querySelectorAll('.mini-item');
+
+        miniItems.forEach(mini => {
+            if (mini.classList.contains('mini-logo')) return;
+            const r = parseInt(mini.dataset.r, 10);
+            const c = parseInt(mini.dataset.c, 10);
+            const targetLargeItem = board[r][c];
+
+            mini.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (targetLargeItem) {
+                    showLargeOverlay(targetLargeItem);
+
+                    const navHeight = document.querySelector("nav") ? document.querySelector("nav").offsetHeight : 70;
+                    const rect = targetLargeItem.getBoundingClientRect();
+                    
+                    if (rect.top < navHeight + 20 || rect.bottom > window.innerHeight - 20) {
+                        const targetY = rect.top + window.pageYOffset - navHeight - 30;
+                        window.scrollTo({
+                            top: targetY,
+                            behavior: 'smooth'
+                        });
+                    }
+
+                    if (miniHighlightTimeout) clearTimeout(miniHighlightTimeout);
+                    miniHighlightTimeout = setTimeout(() => {
+                        targetLargeItem.classList.remove('show-large-overlay');
+                    }, 2500);
+                }
+            });
+        });
+    }
+
+    function findPosition(element) {
+        for (let r = 0; r < ROWS; r++) {
+            for (let c = 0; c < COLS; c++) {
+                if (board[r][c] === element) return { r, c };
+            }
+        }
+        return null;
+    }
+
+    function slideHoleTo(targetR, targetC) {
+        if (hRow === targetR && hCol === targetC) return;
+
+        if (hRow !== targetR) {
+            if (targetC > hCol) {
+                for (let c = hCol; c < targetC; c++) board[hRow][c] = board[hRow][c + 1];
+            } else if (targetC < hCol) {
+                for (let c = hCol; c > targetC; c--) board[hRow][c] = board[hRow][c - 1];
+            }
+            board[hRow][targetC] = spacer;
+            hCol = targetC;
+
+            if (targetR > hRow) {
+                for (let r = hRow; r < targetR; r++) board[r][targetC] = board[r + 1][targetC];
+            } else if (targetR < hRow) {
+                for (let r = hRow; r > targetR; r--) board[r][targetC] = board[r - 1][targetC];
+            }
+            board[targetR][targetC] = spacer;
+            hRow = targetR;
+        } else {
+            if (targetC > hCol) {
+                for (let c = hCol; c < targetC; c++) board[hRow][c] = board[hRow][c + 1];
+            } else if (targetC < hCol) {
+                for (let c = hCol; c > targetC; c--) board[hRow][c] = board[hRow][c - 1];
+            }
+            board[hRow][targetC] = spacer;
+            hCol = targetC;
+        }
+    }
+
+    function updateGrid() {
+        const flatElements = board.flat();
+        const firstRects = new Map();
+        
+        flatElements.forEach(el => { if (el) firstRects.set(el, el.getBoundingClientRect()); });
+        flatElements.forEach(el => { if (el) grid.appendChild(el); });
+
+        flatElements.forEach(el => {
+            if (el) {
+                el.style.transition = 'none';
+                el.style.transform = '';
+            }
+        });
+
+        const lastRects = new Map();
+        flatElements.forEach(el => { if (el) lastRects.set(el, el.getBoundingClientRect()); });
+
+        flatElements.forEach(el => {
+            if (!el) return;
+            const first = firstRects.get(el);
+            const last = lastRects.get(el);
+            if (!first || !last) return;
+
+            const dx = first.left - last.left;
+            const dy = first.top - last.top;
+
+            if (dx !== 0 || dy !== 0) {
+                el.style.transform = `translate(${dx}px, ${dy}px)`;
+                el.getBoundingClientRect(); 
+
+                requestAnimationFrame(() => {
+                    el.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
+                    el.style.transform = '';
+                });
+            }
+        });
+    }
+
+
+    const speakerItems = Array.from(grid.querySelectorAll('.mosaic-item:not(.mosaic-spacer)'));
+
+    speakerItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+
+
+            document.querySelectorAll('.show-large-overlay').forEach(el => {
+                el.classList.remove('show-large-overlay');
+            });
+
+            if (COLS === 1) {
+                if (singleColTimeout) clearTimeout(singleColTimeout);
+
+
+                showLargeOverlay(item);
+
+
+                singleColTimeout = setTimeout(() => {
+                    item.classList.remove('show-large-overlay');
+                    if (document.activeElement) {
+                        document.activeElement.blur();
+                    }
+                }, 2500);
+                return;
+            }
+
+            const pos = findPosition(item);
+            if (!pos) return;
+
+            let targetR = pos.r;
+            let targetC;
+
+            if (hRow === pos.r) {
+                targetC = (hCol < pos.c) ? pos.c - 1 : pos.c + 1;
+            } else {
+                targetC = (pos.c < COLS - 1) ? pos.c + 1 : pos.c - 1;
+            }
+
+            const name = item.querySelector('.speaker-name')?.textContent || '';
+            const type = item.querySelector('.talk-type')?.textContent || '';
+
+            spacer.innerHTML = `
+                <img src="images/empty.webp" alt="" class="spacer-placeholder-img">
+                <div class="spacer-content">
+                    <div class="spacer-name">${name}</div>
+                    <div class="spacer-type">${type}</div>
+                </div>
+            `;
+
+            slideHoleTo(targetR, targetC);
+            updateGrid();
+
+          
+            if (spacerInfoTimeout) clearTimeout(spacerInfoTimeout);
+            spacerInfoTimeout = setTimeout(() => {
+                updateSpacerRecursion();
+            }, 2500); 
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!grid.contains(e.target)) {
+            document.querySelectorAll('.show-large-overlay').forEach(el => {
+                el.classList.remove('show-large-overlay');
+            });
+            if (singleColTimeout) clearTimeout(singleColTimeout);
+            if (spacerInfoTimeout) clearTimeout(spacerInfoTimeout);
+            if (COLS > 1 && !spacer.querySelector('.mini-mosaic')) {
+                updateSpacerRecursion();
+            }
+        }
+    });
+
+    spacer.addEventListener('click', (e) => {
+        if (!spacer.querySelector('.mini-mosaic') && COLS > 1) {
+            e.stopPropagation();
+            if (spacerInfoTimeout) clearTimeout(spacerInfoTimeout);
+            updateSpacerRecursion();
+        }
+    });
+
+
+    document.addEventListener('click', (e) => {
+        if (!grid.contains(e.target) && !spacer.querySelector('.mini-mosaic') && COLS > 1) {
+            if (spacerInfoTimeout) clearTimeout(spacerInfoTimeout);
+            updateSpacerRecursion();
+        }
+    });
 });

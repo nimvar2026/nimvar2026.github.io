@@ -76,8 +76,8 @@
         "type": "invited",
         "speaker": "Matteo Novaga",
         "affiliation": "University of Pisa",
-        "title": "TBA",
-        "abstract": "TBA"
+        "title": "Concentration effects for the elastica functional",
+        "abstract": "We discuss the Gamma-convergence of a class of elastica-type energies on immersed planar curves, depending on a small positive parameter epsilon. The natural limiting object is a curve together with a measure recording where the curvature concentrates. We also characterize the first-order Gamma-limit in some particular setting. Here the limiting energy depends only on the number of concentration points. The rescaled energies turn out to have a structure closely related to the one-dimensional Modica-Mortola functional. This is based on a joint work with G. Bellettini, V. Lorenzini and R. Scala."
     },
     {
         "id": "talk-wed-2",
